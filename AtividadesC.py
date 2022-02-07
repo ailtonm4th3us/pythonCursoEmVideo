@@ -4,6 +4,7 @@ import random
 import pygame
 import os
 from time import sleep
+from datetime import date
 
 cores = {'vermelho': '\033[1;31m',
          'azul': '\033[1;36m',
@@ -705,175 +706,219 @@ def desafio_45():
 
 
 def desafio_46():
-    print(cores['vermelho'] + 'Vamos para contagem para o fim do ANO!!!!' + cores['limpar'])
-    sleep(1)
-    print(cores['vermelho'] + 'COMEÇANDOOOOO A CONTAGEMMM!!!!!' + cores['limpar'])
-    for c in range(0, 11):
-        sleep(1)
-        print(cores['vermelho'], c, cores['limpar'])
-        sleep(0.2)
+    print('Contagem regressiva!!!!')
 
-    print(cores['vermelho'] + 'FELIZZZZZ ANO NOVOOOOOOOO!!!!!!' + cores['limpar'])
+
+    for c in range(10, -1, -1):
+        sleep(1)
+        print(c)
+
+    print('BOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOM!')
 
 
 def desafio_47():
-    print('Vamos mostrar todos os números pares de 1~50')
 
-    for c in range(2, 51, 2):
-        print(c)
+    for c in range(1, 51):
+        if c % 2 == 0:
+            print(c)
+
 
 
 def desafio_48():
-    print('Vamos mostrar a soma entre todos os números impares de 1~500, mutiplos de 3')
-    y = 0
+
+    armazenador = 0
 
     for c in range(1, 501, 2):
         if c % 3 == 0:
-            y += c
+            armazenador += c
 
-    print(f'A soma de todos é {y}')
+    print(f'A soma é {armazenador}')
 
 
 def desafio_49():
-    print('Escolha um número para fazermos uma tabuada')
+    numero_tabuada = int(input('Escolha qual numero da tabuada você quer: '))
 
-    contador = 0
-    numero = int(input('Digite o número para a tabuada: '))
-
-    for c in range(1, 11):
-        contador += 1
-        print(f'{contador} x {numero} = {numero * contador}')
+    for tabuada in range(1, 11):
+        print(f'Tabuada do {tabuada} x {numero_tabuada} = {numero_tabuada * tabuada}')
 
 
 def desafio_50():
-    print('Vamos agora selecionar os números pares e soma-lós')
-    contador = 0
-    soma = 0
+    num_pares = []
+    for numero in range(1, 7):
+        num = int(input('Digite um número: '))
 
-    for c in range(1, 7):
-        contador += 1
-        c = int(input(f'Digite o {contador}° número: '))
-        if c % 2 == 0:
-            soma += c
+        if num % 2 == 0:
+            num_pares.append(num)
 
-    print(f'a soma dos valores pares é: {soma}')
+    print(sum(num_pares))
+
+def desafio_50_1():
+    armazenador = 0
+    lista = []
+    for numeros in range(1, 7):
+        numeros += random.randint(1, 6)
+        if numeros % 2 == 0:
+            armazenador += numeros
+        else:
+            lista.append(numeros)
+
+
+    print(f'A soma dos números pares foram: [{armazenador}]')
+    print(f'Os números impares descartados foram: {lista}')
 
 
 def desafio_51():
-    print('Vamos agora mostrar uma Progressão aritmética')
-    primeiro_termo = int(input('digite primeiro termo: '))
+    print('Vamos fazer uma Progressão Aritmética')
+    num = int(input('Digite o número inicial: '))
     razao = int(input('Digite a razão: '))
-    valor = primeiro_termo + (10 - 1) * razao
+    num_total = num + 9 * razao
 
-    for c in range(primeiro_termo, valor + razao, razao):
-        print(c, end=' -> ')
+    for pa in range(num, num_total + 1, razao):
+        print(pa, end='-> ')
 
-    print('finish')
-
+    print('Acabou!')
 
 def desafio_52():
-    print('Vamos analisar e ver se o número é primo ou não')
-    numero = int(input('Digite o número: '))
-    cont = 0
+    print(f'vamos verificar se o número é primo')
+    num_dig = int(input('Digite o número: '))
+    armazenador = 0
 
-    for c in range(1, numero + 1):
-        if numero % c == 0:
-            cont += 1
+    for num in range(1, num_dig + 1):
 
-    if cont == 2:
-        print('Numero primo')
+        if num_dig % num == 0:
+            armazenador += 1
+
+    if armazenador == 2:
+        print('É número primo!!!')
     else:
-        print('Não é número primo')
-
+        print('Não é numero primo')
 
 def desafio_53():
-    # Definindo a frase
-    print('Vamos agora analisar se uma frase é um Palindromo')
-    frase = str(input('Digite a frase: ')).strip().lower()
 
-    # Fatiar e tirar os espaços das strings -> Replace, join, split......
-    frase_separada = frase.split()
-    frase_junta = ''.join(frase_separada)
+    frase_analisar = str(input('Digite a frase: ')).strip().lower()
+    frase_junta = frase_analisar.replace(" ", "")
+    frase_inverso = frase_junta[::-1]
 
-    # Sistema de contagem e armazenamento
-    inverso_frase = ''
-    cont = 0
+    contador = 0
 
-    # Algortimo para adicionar e inverter a frase
-    for letras in range(len(frase_junta) - 1, -1, -1):
-        inverso_frase += frase_junta[letras]
-        if inverso_frase == frase_junta:
-            cont += 1
+    for c in range(0, 1):
 
-    # Sistema de contagem
-    if cont >= 1:
-        print('É um Palindromo')
+        if frase_junta == frase_inverso:
+            contador += 1
+
+    if contador >= 1:
+        print('É um palindromo')
     else:
         print('Não é um palindromo')
 
+def desafio_53_1():
+    frase_analisar = str(input('Digite a frase: ')).strip().lower()
+    frase_separar = frase_analisar.split()
+    frase_junta = ''.join(frase_separar)
+
+    inverso_frase = ''
+    contador = 0
+
+    for frase in range(len(frase_junta) - 1, -1, -1):
+        inverso_frase += frase_junta[frase]
+
+        if inverso_frase == frase_junta:
+            contador += 1
+
+    if contador >= 1:
+        print('É um palindromo')
+    else:
+        print('Não é um palindromo')
 
 def desafio_54():
-    print('Vamos analisar quantas pessoas aqui já é de maior')
+    ano_atual = date.today().year
+    contador = 0
+    contador_1 = 0
 
-    # sistema para armazenar as idades
-    idades_demaior = []
-    idades_demenor = []
-
-    # Algoritmo para analisar as idades
     for c in range(1, 8):
-        idade = int(input('Qual é sua idade?: '))
+        idade = int(input('Digite o seu ano de nascimento: '))
 
-        if idade < 21:
-            idades_demenor.append(idade)
+        if (ano_atual - idade) >= 21:
+            contador += 1
+        elif (ano_atual - idade) < 21:
+            contador_1 += 1
 
-        elif idade >= 21:
-            idades_demaior.append(idade)
-
-    print(f'Há exatamente {len(idades_demaior)} pessoas maior de idade e {len(idades_demenor)} '
-          f'pessoas com idade inferior a 18 anos')
-
+    print(f'Apenas {contador} atigiram a maioridade, enquanto os outros {contador_1} não atingiram a maioridade')
 
 def desafio_55():
-    print('Vamos agora analisar os pesos das pessoas e classificar o mais pesado')
+    maiorpeso = 0
+    menorpeso = 0
 
-    # Armazenar os dados
-    lista_peso = []
+    for p in range(1, 6):
+        pesos_pessoais = float(input('Digite o peso: '))
+        if p == 1:
+            maiorpeso = pesos_pessoais
+            menorpeso = pesos_pessoais
+        else:
+            if pesos_pessoais > maiorpeso:
+                maiorpeso = pesos_pessoais
+            if pesos_pessoais < menorpeso:
+                menorpeso = pesos_pessoais
 
-    # Laço de repetição para obter os pesos
-    for c in range(1, 6):
-        peso_pessoa = int(input('Digite seu peso (Kg): '))
-        lista_peso.append(peso_pessoa)
 
-    # Printar na tela o resultado
-    print(f'O maior peso foi {max(lista_peso)} Kg e o menor peso foi {min(lista_peso)} Kg')
+    print(f'maior peso {maiorpeso}, menor peso {menorpeso}')
+
+def desafio_55_1():
+    lista_pesos = []
+
+    for peso in range(1, 6):
+        peso_pessoal = float(input(f'Digite o peso da {peso}° pessoa: '))
+        lista_pesos.append(peso_pessoal)
+
+
+    print(f'O maior peso foi: {max(lista_pesos)} Kg e o menor peso foi: {min(lista_pesos)} Kg')
+
 
 
 def desafio_56():
-    print('Vamos agora coletar os nomes, idades e sexos de cada pessoa')
+    idade_total = []
+    sex_fem = []
 
-    # Armazenar as idades
-    lista_nomes = []
-    lista_idades = []
-    lista_sexos = []
+    homem_mais_velho = 0
+    nome_homem_velho = ''
+    lista_homens = []
 
-    # Laço de repetição para coletar os dados
-    for c in range(1, 4):
-        # Obter os dados
-        nome_pessoa = str(input('Digite seu nome: ')).lower()
-        idade_pessoa = int(input('Digite sua idade: '))
-        sexo_pessoa = str(input('Digite seu sexo: ')).lower()
-
-        # Adicionar os valores obtidos nos inputs nas listas criadas
-        lista_nomes.append(nome_pessoa)
-        lista_idades.append(idade_pessoa)
-        lista_sexos.append(sexo_pessoa)
-
-    # Calcular média das idades
-    sumidades = sum(lista_idades) / len(lista_idades)
+    for group in range(1, 5):
+        nome_pessoa = str(input(f'Nome da {group}° pessoa: '))
+        idade_pessoa = int(input(f'Idade da {group}° pessoa: '))
+        idade_total.append(idade_pessoa)
+        sexo_pessoa = str(input(f'Sexo da {group}° pessoa [M/F]: ')).lower()
 
 
-    # Mostrar o resultado
-    print(f'A idade média do grupo é {round(sumidades)}')
+        if group == 1 and sexo_pessoa in 'Mm':
+            homem_mais_velho = idade_pessoa
+            nome_homem_velho = nome_pessoa
+            lista_homens.append(nome_homem_velho)
 
+        if sexo_pessoa in 'Mm' and idade_pessoa > homem_mais_velho:
+            homem_mais_velho = idade_pessoa
+            nome_homem_velho = nome_pessoa
+            lista_homens.append(nome_homem_velho)
+
+        if sexo_pessoa in 'Ff' and idade_pessoa < 20:
+            sex_fem.append(sexo_pessoa)
+
+    sumIdade = sum(idade_total) / len(idade_total)
+    print(f'A média da idade do grupo é: {round(sumIdade)} anos')
+
+    if len(lista_homens) >= 1:
+        print(f'O homem mais velho tem {homem_mais_velho} anos, e o nome dele é: {nome_homem_velho} ')
+    else:
+        print('Não existe homens nesse grupo')
+
+
+    if len(sex_fem) == 1:
+        name = 'mulher'
+        print(f'Existe {len(sex_fem)} {name} abaixo dos 20 anos.')
+    elif len(sex_fem) >= 2:
+        name = 'mulheres'
+        print(f'Existe {len(sex_fem)} {name} abaixo dos 20 anos.')
+    else:
+        print('Não existe mulheres com idade abaixo de 20 anos nesse grupo')
 
 desafio_56()
